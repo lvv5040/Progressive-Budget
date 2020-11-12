@@ -11,6 +11,15 @@ const targetCacheFiles = [
 const SITE_CACHE = "site-cache";
 const DATA_CACHE = "data-cache";
 
+self.addEventListener("install", function (event) {
+  // Perform install steps
+  event.waitUntil(
+    caches.open(SITE_CACHE).then(function (cache) {
+      return cache.addAll(targetCacheFiles);
+    })
+  );
+});
+
 self.addEventListener("fetch", function (event) {
   //cache all on specified route
   if (event.request.url.includes("/api/")) {
@@ -42,12 +51,4 @@ self.addEventListener("fetch", function (event) {
   );
 });
 
-//on install of
-self.addEventListener("install", function (event) {
-  // Perform install steps
-  event.waitUntil(
-    caches.open(SITE_CACHE).then(function (cache) {
-      return cache.addAll(targetCacheFiles);
-    })
-  );
-});
+
