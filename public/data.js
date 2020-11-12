@@ -1,5 +1,4 @@
-// listen for app coming back online
-window.addEventListener("online", checkDatabase);
+
 
 //at the global scope create db
 var db;
@@ -79,3 +78,5 @@ window.addEventListener("online", function (event) {
       });
   };
 });
+// listen for app coming back online
+window.addEventListener("online", checkDatabase);
